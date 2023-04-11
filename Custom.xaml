@@ -1,0 +1,221 @@
+<!-- 欢迎 -->
+<StackPanel>
+	<StackPanel Margin="0,-10,0,0">
+	<!-- 闪烁切换效果 -->
+    <StackPanel.Triggers>
+      <EventTrigger RoutedEvent="StackPanel.Loaded">
+        <BeginStoryboard>
+          <Storyboard x:Name="animation1" RepeatBehavior="Forever">
+            <ColorAnimation Storyboard.TargetName="Text1" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" From="#FF000000" To="#FF000000" Duration="0:0:0" />
+            <ColorAnimation BeginTime="0:0:5" Storyboard.TargetName="Text1" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" From="#FF000000" To="#00000000" Duration="0:0:1" />
+            <ColorAnimation BeginTime="0:0:13" Storyboard.TargetName="Text1" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" From="#00000000" To="#FF000000" Duration="0:0:1" />
+            <ColorAnimation Storyboard.TargetName="Text2" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" From="#00000000" To="#00000000" Duration="0:0:0" />
+            <ColorAnimation BeginTime="0:0:6" Storyboard.TargetName="Text2" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" From="#00000000" To="#FF000000" Duration="0:0:1" />
+            <ColorAnimation BeginTime="0:0:12" Storyboard.TargetName="Text2" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" From="#FF000000" To="#00000000" Duration="0:0:1" />
+          </Storyboard>
+        </BeginStoryboard>
+      </EventTrigger>
+    </StackPanel.Triggers>
+	
+    <Border Margin="0,0,0,10" Padding="2,8" BorderThickness="1" Background="{DynamicResource ColorBrush5}" CornerRadius="5" VerticalAlignment="Top" BorderBrush="{DynamicResource ColorBrush3}" Opacity="0.7">
+      <Grid Margin="10,0,0,0">
+        <TextBlock x:Name="Text1" FontWeight="Bold" FontSize="12" VerticalAlignment="Center" Foreground="#FF000000">
+                ✨ 欢迎使用由 MoRanpcy 制作的自定义主页面！ ✨
+		</TextBlock>
+			<TextBlock x:Name="Text2" FontWeight="Bold" FontSize="12" VerticalAlignment="Center" Foreground="#00000000">
+                🎉 祝你玩的愉快！
+		</TextBlock>
+		<local:MyButton Margin="0,0,10,0" Width="12" Height="12" HorizontalAlignment="Right" VerticalAlignment="Center" ToolTip="刷新" EventType="刷新主页">
+			<Path Fill="black" Stretch="Fill" Width="12" Height="12">
+				<Path.Data>
+					<PathGeometry FillRule="Nonzero" Figures="M835.072 184.32l-77.824 81.92c-64.512-66.56-153.6-106.496-251.904-106.496-195.584 0-355.328 159.744-355.328 354.304 0 195.584 159.744 354.304 355.328 354.304 147.456 0 304.128-80.896 337.92-245.76 3.072-15.36-9.216-23.552-21.504-23.552l-72.704 0c-15.36 0-28.672 14.336-29.696 24.576 0 2.048 0 3.072-1.024 3.072-32.768 96.256-107.52 119.808-212.992 119.808-128 0-232.448-104.448-232.448-232.448s104.448-231.424 232.448-231.424c64.512 0 121.856 26.624 165.888 69.632l-101.376 100.352c-1.024 0-1.024 1.024-2.048 1.024-20.48 22.528-12.288 37.888 11.264 37.888l256 0c22.528 0 36.864-15.36 36.864-37.888L871.936 193.536C870.912 174.08 857.6 166.912 835.072 184.32z"/>
+				</Path.Data>
+			</Path>
+		</local:MyButton>
+      </Grid>
+    </Border>
+	
+    <Grid Margin="0,0,0,10">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="1*">
+        </ColumnDefinition>
+        <ColumnDefinition Width="130">
+        </ColumnDefinition>
+        <ColumnDefinition Width="1*">
+        </ColumnDefinition>
+      </Grid.ColumnDefinitions>
+      <Line X1="0" X2="100" Stroke="{DynamicResource ColorBrush5}" StrokeThickness="1.5" HorizontalAlignment="Center" Stretch="Fill" Grid.Column="0" />
+      <TextBlock Text="MoRanpcy's 主页" HorizontalAlignment="Center" FontSize="14" Foreground="{DynamicResource ColorBrush5}" Grid.Column="1" VerticalAlignment="Center" />
+      <Line X1="0" X2="100" Stroke="{DynamicResource ColorBrush5}" StrokeThickness="1.5" HorizontalAlignment="Center" Stretch="Fill" Grid.Column="2" />
+    </Grid>
+    </StackPanel>
+</StackPanel>
+
+<!-- 日历 -->
+<local:MyCard Margin="0,0,0,5">
+    <Grid UseLayoutRounding="True">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="215"></ColumnDefinition>
+            <ColumnDefinition Width="5"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <GridSplitter Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Width="5" Margin="0,0,0,20" Opacity="0"
+            VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
+        <Calendar  HorizontalAlignment="Left" Margin="16,10,0,0" Grid.Row="0" Grid.Column="0" ></Calendar>
+        <InkCanvas EditingMode="{Binding ElementName=ComboBox,Path=SelectedItem.Tag}" HorizontalAlignment="Right" Margin="0,10,16,10" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"
+            Width="1024" MaxHeight="768" MinHeight="100" Background="{DynamicResource ColorBrush5}">
+        </InkCanvas>
+        <local:MyComboBox Name="ComboBox" Height="18" Text="选择画笔" IsEditable="False" IsDropDownOpen="False" Margin="16,0,0,10" Grid.Row="1" Grid.Column="0">            
+            <local:MyComboBoxItem Tag="Ink" Content="&gt; &gt; 绘 制 墨 迹 &lt; &lt;" IsSelected="True"/>
+            <local:MyComboBoxItem Tag="EraseByPoint" Content="&gt; &gt; 按 点 擦 除 &lt; &lt;"/>
+            <local:MyComboBoxItem Tag="EraseByStroke" Content="&gt; &gt; 按 线 擦 除 &lt; &lt;"/>
+            <local:MyComboBoxItem Tag="Select" Content="&gt; &gt; 选 中 墨 迹 &lt; &lt;"/>
+            <local:MyComboBoxItem Tag="None" Content="&gt; &gt; 停 止 操 作 &lt; &lt;"/>
+        </local:MyComboBox>
+    </Grid>
+</local:MyCard>
+
+<!-- JAVA 下载 -->
+<local:MyCard Title="Java 下载" Margin="0,0,0,5" CanSwap="True" IsSwaped="True" >
+    <StackPanel Margin="25,40,23,15">
+		<TextBlock Margin="0,0,0,5" Text="点击下方按钮进入 JAVA 官网进行下载。" />
+        <local:MyHint Margin="0,0,0,10" IsWarn="False" Text="1.7 ~ 1.16 推荐使用 Java8，&#xA;1.17 及以后推荐使用 Java17。" />
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+			<Image Height="80" Margin="0,0,0,10" Source="https://cdn.icon-icons.com/icons2/195/PNG/256/Java_23404.png" />
+			<StackPanel>
+				<local:MyButton Margin="10,0,0,5" Width="110" Height="35" Padding="13,0,13,0" ColorType="Highlight"
+					Text="JAVA 8" EventType="打开网页" EventData="https://www.java.com/zh-CN/" />
+				<local:MyButton Margin="10,0,0,10" Width="110" Height="35" Padding="13,0,13,0" ColorType="Highlight"
+					Text="JAVA 17" EventType="打开网页" EventData="https://www.oracle.com/java/technologies/downloads/#jdk17-windows" />
+			</StackPanel>		
+		</StackPanel>
+		<TextBlock Margin="0,0,0,10" Text="懒人看这里：" />
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+			<local:MyTextButton Margin="0,0,0,-5" ToolTip="点击直接下载 Java 8"
+				Text="下载 Java 8" EventType="打开网页" EventData="https://javadl.oracle.com/webapps/download/AutoDL?BundleId=247136_10e8cce67c7843478f41411b7003171c" />
+			<local:MyTextButton Margin="40,0,0,-5" ToolTip="点击直接下载 Java 17"
+				Text="下载 Java 17" EventType="打开网页" EventData="https://download.oracle.com/java/17/latest/jdk-17_windows-x64_bin.exe" />
+		</StackPanel>	
+	</StackPanel>
+</local:MyCard>
+
+<!-- 网址导航 -->
+<local:MyCard Title="网址导航" Margin="0,0,0,5" CanSwap="True" > 
+    <StackPanel Margin="25,40,23,15">
+        <TextBlock Margin="0,0,0,10" Text="这里收录了部分 MC 必备网址，有待补充。。" />
+        <local:MyListItem  Margin="0,0,0,5" 
+		           Logo="https://www.mcbbs.net/template/mcbbs/image/logo_sc.png" Title="Minecraft 中文论坛（MCBBS）" Info="Minecraft 中文论坛，国内最大的 MC 社区！" 
+		           EventType="打开网页" EventData="https://www.mcbbs.net/" Type="Clickable" />
+        <local:MyListItem  Margin="0,0,0,5" 
+		           Logo="https://static.hdslb.com/images/favicon.ico" Title="Minecraft 中文 WIKI 镜像（BWIKI）" Info="Minecraft Wiki 的中文镜像！" 
+		           EventType="打开网页" EventData="https://wiki.biligame.com/mc/Minecraft_Wiki" Type="Clickable" />
+        <local:MyListItem  Margin="0,0,0,5" 
+		           Logo="https://www.mcmod.cn/favicon.ico" Title="MC 百科" Info="最大的 Minecraft 中文 MOD 百科！" 
+		           EventType="打开网页" EventData="https://www.mcmod.cn/" Type="Clickable" />
+        <local:MyListItem  Margin="0,0,0,5" 
+		           Logo="https://littleskin.cn/favicon.png" Title="LittleSkin" Info="快速、可靠的公益 Minecraft 皮肤站！" 
+		           EventType="打开网页" EventData="https://littleskin.cn/" Type="Clickable" />
+        <local:MyListItem  Margin="0,0,0,5" 
+		           Logo="https://www.chunkbase.com/favicon.ico" Title="ChunkBase" Info="区块查询 / 种子地图！" 
+		           EventType="打开网页" EventData="https://www.chunkbase.com/apps/" Type="Clickable" />
+		<Grid UseLayoutRounding="True">
+			<Grid.RowDefinitions>
+				<RowDefinition></RowDefinition>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition></ColumnDefinition>
+				<ColumnDefinition></ColumnDefinition>
+				<ColumnDefinition></ColumnDefinition>
+				<ColumnDefinition></ColumnDefinition>
+			</Grid.ColumnDefinitions>
+			<local:MyTextButton Margin="0,0,0,-5" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Text="MCNav" EventType="打开网页" EventData="https://www.mcnav.net/" ToolTip="打开 MC 导航网" />
+			<local:MyTextButton Margin="0,0,0,-5" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" Text="more+" EventType="打开帮助" EventData="navigation.json" />	      		
+		</Grid>
+    </StackPanel>	
+</local:MyCard>
+
+<!-- 快捷功能 -->
+<local:MyCard Title="快捷功能" Margin="0,0,0,5" CanSwap="True" >
+	<StackPanel Margin="25,40,23,15">
+		<!-- 第一行 -->	
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <local:MyButton Margin="3,0,0,0" Width="110" Height="35" Padding="13,0,13,0" ColorType="Highlight"
+                   Text="百度一下" EventType="打开网页" EventData="https://www.baidu.com/" ToolTip="百度一下，你就知道！" />
+            <local:MyButton Margin="3,0,0,0" Width="110" Height="35" Padding="13,0,13,0" ColorType="Highlight"
+                   Text="bilibili" EventType="打开网页" EventData="https://www.bilibili.com/" ToolTip="快乐的源泉" />
+            <local:MyButton Margin="3,0,0,0" Width="110" Height="35" Padding="13,0,13,0" ColorType="Highlight"
+                   Text="下载文件夹" EventType="打开文件" EventData="MyDownload" />
+        </StackPanel>
+		<!-- 第二行 -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,3,0,0">
+            <local:MyButton Margin="3,0,0,0" Width="110" Height="35" Padding="13,0,13,0" ColorType="Highlight"
+                   Text="MC新闻主页" EventType="复制文本" EventData="https://news.bugjump.net/" ToolTip="点击复制 MC 新闻主页链接" />
+            <local:MyButton Margin="3,0,0,0" Width="110" Height="35" Padding="13,0,13,0" ColorType="Highlight"
+                   Text="虚无世界3.6.5" EventType="打开网页" EventData="https://www.yuque.com/moranpcy/dgbng9/gbowltkoiighke80?inner=zEBy1" ToolTip="虚无世界3.6.5思维导图" />
+            <local:MyButton Margin="3,0,0,0" Width="110" Height="35" Padding="13,0,13,0" ColorType="Highlight"
+                   Text="Radmin Lan" EventType="打开文件" EventData="C:\Program Files (x86)\Radmin VPN\RvRvpnGui.exe|/show" />
+			<!--
+            <local:MyButton Margin="3,0,0,0" Width="110" Height="35" Padding="13,0,13,0" ColorType="Highlight"
+                   Text="未设定。。" EventType="弹出窗口" EventData="未设定。。|都说了未设定，还不信。。\n还没想好这个按钮用来干啥，暂且充个数。。" />
+            -->
+        </StackPanel>
+		<!-- 第三行 -->	
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,3,0,0">
+            <local:MyButton Margin="3,0,0,0" Width="110" Height="35" Padding="13,0,13,0" ColorType="Highlight"
+                   Text="今日人品" EventType="今日人品" ToolTip="快来看看今天的人品如何！" />
+            <local:MyButton Margin="3,0,0,0" Width="110" Height="35" Padding="13,0,13,0" ColorType="Highlight"
+                   Text="清理垃圾" EventType="清理垃圾" ToolTip="清理 PCL 的缓存与 MC 的日志、崩溃报告等垃圾文件" />
+            <local:MyButton Margin="3,0,0,0" Width="110" Height="35" Padding="13,0,13,0" ColorType="Highlight"
+                   Text="未设定。。" EventType="弹出窗口" EventData="未设定。。|都说了未设定，还不信。。\n还没想好这个按钮用来干啥，暂且充个数。。" />
+        </StackPanel>
+        <local:MyTextButton Margin="0,5,0,-5" HorizontalAlignment="Right" Text="刷新" EventType="刷新主页" />		        
+    </StackPanel>       	
+</local:MyCard>
+
+<!-- 下载 -->
+<local:MyCard Title="下载" Margin="0,0,0,5" CanSwap="True" >
+	<StackPanel Margin="25,40,23,10">
+		<local:MyHint IsWarn="True" Text="链接必须为以 http:// 或 https:// 开头的网址，部分网址（如百度网盘）可能会报错，无法正常下载。" />
+		<StackPanel Orientation="Horizontal" Margin="0,10,0,0" >
+			<TextBlock Text="下载链接：" VerticalAlignment="Center" />
+			<local:MyTextBox Margin="3,0,3,0" Name="web" Height="30" Width="245" />
+			<local:MyButton EventType="下载文件" EventData="{Binding ElementName=web,Path=Text}" Text="📁" Width="30" Height="30" ToolTip="下载" ColorType="Highlight"/>
+		</StackPanel>
+	</StackPanel>
+</local:MyCard>
+
+<!-- 备份注册表 -->
+<local:MyCard Title="备份注册表" Margin="0,0,0,5" CanSwap="True" IsSwaped="True" >
+    <StackPanel Margin="25,40,23,15">
+		<TextBlock Margin="0,0,0,5" TextWrapping="Wrap" Text="点击下方按钮进行注册表备份，若备份成功，名为 PCLRegBackup.reg 的文件会在 PCL 文件夹内生成。"/>
+		<StackPanel Orientation="Horizontal">
+			<local:MyButton MinWidth="170" Height="35" Padding="13,0" Margin="0,5,5,10" HorizontalAlignment="Left" ToolTip="将 PCL2 的注册表信息备份到 PCL 文件夹中" ColorType="Highlight"
+				Text="备份注册表" EventType="打开文件" EventData="cmd.exe|/C reg export HKEY_CURRENT_USER\Software\PCL PCLRegBackup.reg" />
+			<local:MyButton MinWidth="170" Height="35" Padding="13,0" Margin="0,5,0,10" HorizontalAlignment="Left" ToolTip="如果你之前使用过备份 PCL 注册表功能，点击此按钮可以将 PCL 文件夹中的备份文件还原。" ColorType="Highlight"
+				Text="恢复注册表" EventType="打开文件" EventData="PCLRegBackup.reg"/>
+		</StackPanel>
+		<local:MyHint Text="使用恢复注册表功能后需要重启 PCL2。" IsWarn="True"/>
+    </StackPanel>	
+</local:MyCard>
+
+<StackPanel Margin="0,0,0,0">
+   <Grid Margin="0,7,0,9">
+      <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="1*">
+          </ColumnDefinition>
+          <ColumnDefinition Width="100">
+          </ColumnDefinition>
+          <ColumnDefinition Width="1*">
+          </ColumnDefinition>
+      </Grid.ColumnDefinitions>
+      <Line X1="0" X2="100" Stroke="{DynamicResource ColorBrush5}" StrokeThickness="1.5" HorizontalAlignment="Center" Stretch="Fill" Grid.Column="0" />
+      <TextBlock Text="到  底  啦" HorizontalAlignment="Center" FontSize="14" Foreground="{DynamicResource ColorBrush5}" Grid.Column="1" VerticalAlignment="Center" />
+      <Line X1="0" X2="100" Stroke="{DynamicResource ColorBrush5}" StrokeThickness="1.5" HorizontalAlignment="Center" Stretch="Fill" Grid.Column="2" />
+   </Grid>
+	<local:MyHint Margin="0,0,0,5" IsWarn="False"
+			Text="本主页作者： MoRanpcy " /> 
+</StackPanel>
