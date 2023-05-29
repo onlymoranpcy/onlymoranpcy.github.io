@@ -447,9 +447,30 @@
 	<!-- TAB: HELP -->
 	<div id="tab-help">
 	</div>
-</div>
+	
+	</div>
 
-<div id="dialog-caption" class="dialog text-center"></div>
+	<div id="dialog-caption" class="dialog text-center"></div>
 
+	<div class="dialog-overlay" style="position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 8000;"></div>
+
+	<div id="dragzone" class="wrapper">
+		<div id="dragzone-message">
+			<button class="close" onclick="document.getElementById('file-load').click()">
+				<i class="icon disk"></i>
+					" Browse progress.sav or caption.sav"
+				</button>
+					" or drop it here
+		</div>
+		<input type="file" class="hidden" id="file-load">
+	</div>
+
+	<div class="dialog" id="dialog-warning">
+		"Use this tool at your own risk. By using it, you are responsible of any data lost."
+		<div class="buttons">
+			<button>I understand</button>
+		</div>
+	</div>
+	
 </body>
 </html>
